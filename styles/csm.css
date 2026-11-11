@@ -1,0 +1,26 @@
+/* Carte Stellaire Manhwa : calque plein écran au-dessus de Foundry */
+#csm-overlay { position: fixed; inset: 0; z-index: 9000; display: none; background: #03050d; }
+#csm-overlay.open { display: block; animation: csm-in .35s ease-out; }
+#csm-overlay .csm-frame { width: 100%; height: 100%; border: 0; display: block; background: #03050d; }
+@keyframes csm-in { from { opacity: 0; transform: scale(1.015); } to { opacity: 1; transform: none; } }
+/* 1.9 — commandes réduire / fermer (boutons 3D de la suite Manhwa) et barre réduite */
+#csm-overlay .csm-ctl { position: absolute; inset: 0 0 auto 0; height: 0; z-index: 20; pointer-events: none; }
+#csm-overlay .csm-ctl .ms-fs-r { position: absolute; right: 14px; top: 12px; display: flex; gap: 10px; pointer-events: auto; }
+#csm-overlay .csm-bar { display: none; }
+#csm-overlay.min { inset: auto; left: 50%; bottom: 84px; translate: -50% 0; width: min(560px, 92vw); height: 60px; border-radius: 30px; overflow: hidden; background: none;
+  box-shadow: 0 0 0 1px #38e0ff66, 0 0 22px #1a7dff66, 0 12px 30px #000c; animation: csm-bar-in .28s cubic-bezier(.2, .9, .3, 1.2); }
+#csm-overlay.min .csm-frame { visibility: hidden; position: absolute; width: 1px; height: 1px; }
+#csm-overlay.min .csm-ctl { display: none; }
+#csm-overlay.min .csm-bar { display: flex; align-items: center; gap: 14px; width: 100%; height: 100%; padding: 0 22px; cursor: pointer; color: #eaf6ff; background: linear-gradient(90deg, #0b1430f2, #142a5af2 50%, #0b1430f2); }
+#csm-overlay .csm-bar .ic { font-size: 22px; color: #9fd0ff; filter: drop-shadow(0 0 8px #3f8cff); }
+#csm-overlay .csm-bar b { flex: 1; font-size: 16px; letter-spacing: .04em; }
+#csm-overlay .csm-bar .hint { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #9fefff; text-shadow: 0 0 8px #38e0ff; }
+#csm-overlay .csm-bar .up { color: #9fefff; }
+#csm-overlay .csm-bar:hover { filter: brightness(1.15); }
+@keyframes csm-bar-in { from { transform: translateY(40px) scale(.9); opacity: 0; } }
+/* 1.9.1 — plusieurs barres réduites côte à côte (positions données par Manhwa Sheet) */
+#csm-overlay.min.ms-fs-min-ext[style*="--ms-fs-x"] { left: var(--ms-fs-x); width: var(--ms-fs-w); bottom: var(--ms-fs-b); translate: none; }
+/* 1.9.2 — croix pour fermer la barre réduite */
+#csm-overlay .csm-bar .x { all: unset; box-sizing: border-box; flex: none; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; cursor: pointer; color: #fff; font-size: 15px; margin-left: 2px;
+  background: linear-gradient(155deg, #ff7a8a, #d6304a 55%, #8e1530); box-shadow: inset 0 1px 0 #ffffff66, 0 2px 0 #5a0b1d, 0 0 10px -2px #ff4a6a; }
+#csm-overlay .csm-bar .x:hover { filter: brightness(1.15); }
